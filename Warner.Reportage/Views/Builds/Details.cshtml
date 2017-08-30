@@ -1,0 +1,34 @@
+@using Warner.Reportage.ViewModels
+@model BuildDetailsViewModel
+
+@{
+    ViewBag.Title = "Build warnings";
+}
+
+<h2>Build #@Model.BuildNumber has @Model.WarningsTotalCount warnings</h2>
+
+<h3>Details:</h3>
+<ul>
+    <li>
+        <span>
+            <b>Warning code</b>
+        </span>
+        <span>
+            <b>Count</b>
+        </span>
+    </li>
+    @foreach (var v in Model.WarningsWithCounts
+        .OrderByDescending(p => p.WarningsCountInBuild))
+    {
+        <li>
+            <span>
+                <a href="@v.WarningDetailsLink">@v.WarningType</a>
+            </span>
+            <span>
+                @v.WarningsCountInBuild
+            </span>
+        </li>
+    }
+</ul>
+
+

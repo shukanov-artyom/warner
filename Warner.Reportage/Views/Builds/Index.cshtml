@@ -1,0 +1,29 @@
+﻿@using Warner.Reportage.ViewModels
+@model IEnumerable<BuildViewModel>
+
+@{
+    ViewBag.Title = "Builds available";
+}
+
+<h1>
+    Latest @Model.Count() builds for project
+</h1>
+<ul>
+    @foreach (BuildViewModel buildViewModel in Model)
+    {
+        <li class="no-bullet">
+            <h3>
+                @Html.ActionLink(@buildViewModel.BuildNumberDisplay,
+                    "Details",
+                    "Builds",
+                    new { buildId = @buildViewModel.Model.Id },
+                    new { @class = "build-link" })
+
+            </h3>
+            <span>
+                Built on @buildViewModel.BuildDateDisplay.ToString("yyyy.MM.dd")
+            </span>
+        </li>
+    }
+</ul>
+

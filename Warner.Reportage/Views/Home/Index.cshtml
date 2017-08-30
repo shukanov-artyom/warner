@@ -1,0 +1,15 @@
+﻿@using Warner.Reportage.ViewModels
+@model List<ProjectViewModel>
+@{
+    ViewData["Title"] = "Warnings dashboard";
+}
+
+<h1>Projects</h1>
+<ul>
+    @foreach (ProjectViewModel project in Model)
+    {
+        <li class="no-bullet">
+            <p>@Html.ActionLink(@project.Name, "Index", "Builds", new { projectName = project.Name })</p>
+        </li>
+    }
+</ul>

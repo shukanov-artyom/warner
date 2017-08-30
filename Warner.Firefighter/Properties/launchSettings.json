@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Warner.Firefighter": {
+      "commandName": "Project",
+      "commandLineArgs": "d:\\dev\\warnerTestData\\OB-MRG-JOB1-1254.log d:\\dev\\ortb-merge-websites"
+    }
+  }
+}
