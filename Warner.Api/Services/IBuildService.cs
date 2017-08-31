@@ -12,6 +12,8 @@ namespace Warner.Api.Services
             long projectId,
             long buildNumber);
 
+        Build GetPreviousFor(long buildId);
+
         Build SaveNew(Build build);
 
         List<Build> GetAllForProject(string projectName);

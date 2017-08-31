@@ -7,28 +7,40 @@
 
 <h2>Build #@Model.BuildNumber has @Model.WarningsTotalCount warnings</h2>
 
-<h3>Details:</h3>
-<ul>
-    <li>
-        <span>
-            <b>Warning code</b>
-        </span>
-        <span>
-            <b>Count</b>
-        </span>
-    </li>
-    @foreach (var v in Model.WarningsWithCounts
-        .OrderByDescending(p => p.WarningsCountInBuild))
-    {
-        <li>
-            <span>
-                <a href="@v.WarningDetailsLink">@v.WarningType</a>
-            </span>
-            <span>
-                @v.WarningsCountInBuild
-            </span>
-        </li>
-    }
-</ul>
+<div class="col-md-6">
+    <h3>Warnings by count:</h3>
+    <ul>
+        @foreach (var v in Model.WarningsWithCounts
+            .OrderByDescending(p => p.WarningsCountInBuild))
+        {
+            <li>
+                <span>
+                    <a href="@v.WarningDetailsLink">@v.WarningType</a>
+                </span>
+                <span>
+                    @v.WarningsCountInBuild
+                </span>
+            </li>
+        }
+    </ul>
+</div>
+<div class="col-md-6">
+    <h3>Warnings movement:</h3>
+    <ul>
+        @foreach (var v in Model.WarningsWithCounts
+            .OrderByDescending(p => p.WarningsCountInBuild))
+        {
+            <li>
+                <span>
+                    <a href="@v.WarningDetailsLink">@v.WarningType</a>
+                </span>
+                <span>
+                    @v.WarningsCountInBuild
+                </span>
+            </li>
+        }
+    </ul>
+</div>
+
 
 

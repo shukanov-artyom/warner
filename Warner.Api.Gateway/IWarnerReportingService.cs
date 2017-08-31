@@ -18,5 +18,7 @@ namespace Warner.Api.Gateway
         IEnumerable<BuildWarning> GetAllWarningsForBuild(long buildId);
 
         IDictionary<string, int> GetSummaryForBuild(long buildId);
+
+        IDictionary<string, int> GetMovementsForBuild(long buildId);
     }
 }

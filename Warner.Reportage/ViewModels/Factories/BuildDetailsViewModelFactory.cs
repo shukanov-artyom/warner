@@ -21,7 +21,8 @@ namespace Warner.Reportage.ViewModels.Factories
         {
             Build build = builds.Get(buildId);
             var summary = warnings.GetSummaryForBuild(buildId);
-            return new BuildDetailsViewModel(build, summary);
+            var movements = warnings.GetMovementsForBuild(buildId);
+            return new BuildDetailsViewModel(build, summary, movements);
         }
     }
 }

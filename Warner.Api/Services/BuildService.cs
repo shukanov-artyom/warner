@@ -41,6 +41,19 @@ namespace Warner.Api.Services
             return mapper.Map<Build>(entity);
         }
 
+        public Build GetPreviousFor(long buildId)
+        {
+            BuildEntity currentBuildEntity = dataContext.Builds
+                .First(b => b.Id == buildId);
+            long projectId = currentBuildEntity.ProjectId;
+            BuildEntity prevBuildEntity = dataContext.Builds
+                .Where(b => b.ProjectId == projectId
+                            && b.BuildNumber < currentBuildEntity.BuildNumber)
+                .OrderByDescending(b => b.BuildNumber)
+                .First();
+            return Mapper.Map<Build>(prevBuildEntity);
+        }
+
         public Build SaveNew(Build build)
         {
             BuildEntity buildEntity = mapper.Map<BuildEntity>(build);

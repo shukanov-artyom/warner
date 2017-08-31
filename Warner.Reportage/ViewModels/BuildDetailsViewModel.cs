@@ -11,10 +11,12 @@ namespace Warner.Reportage.ViewModels
 
         public BuildDetailsViewModel(
             Build build,
-            IDictionary<string, int> warningsWithCounts)
+            IDictionary<string, int> warningsWithCounts,
+            IDictionary<string, int> warningsWithMovements)
         {
             this.build = build;
             WarningsWithCounts = new List<WarningWithCountViewModel>();
+            WarningsWithMovements = new WarningsMovementsViewModel(warningsWithMovements);
             foreach (KeyValuePair<string, int> pair in warningsWithCounts)
             {
                 WarningsWithCounts.Add(
@@ -39,5 +41,7 @@ namespace Warner.Reportage.ViewModels
         }
 
         public List<WarningWithCountViewModel> WarningsWithCounts { get; }
+
+        public WarningsMovementsViewModel WarningsWithMovements { get; }
     }
 }

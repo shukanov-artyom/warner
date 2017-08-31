@@ -45,5 +45,11 @@ namespace Warner.Api.Gateway
             return QueryParse<Dictionary<string, int>>(
                 $@"api/Warning/Summary/{buildId}");
         }
+
+        public IDictionary<string, int> GetMovementsForBuild(long buildId)
+        {
+            return QueryParse<Dictionary<string, int>>(
+                $@"api/Warning/Movement/{buildId}");
+        }
     }
 }

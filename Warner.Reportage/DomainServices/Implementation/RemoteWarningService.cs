@@ -24,5 +24,10 @@ namespace Warner.Reportage.DomainServices.Implementation
         {
             return webApi.GetSummaryForBuild(buildId);
         }
+
+        public IDictionary<string, int> GetMovementsForBuild(long buildId)
+        {
+            return webApi.GetMovementsForBuild(buildId);
+        }
     }
 }
