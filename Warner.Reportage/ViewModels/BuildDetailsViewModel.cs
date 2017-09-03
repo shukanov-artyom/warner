@@ -1,47 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Warner.Domain;
+using System.Collections.ObjectModel;
 
 namespace Warner.Reportage.ViewModels
 {
     public class BuildDetailsViewModel
     {
-        private readonly Build build;
+        public int WarningsTotalCountCurrent { get; set; }
 
-        public BuildDetailsViewModel(
-            Build build,
-            IDictionary<string, int> warningsWithCounts,
-            IDictionary<string, int> warningsWithMovements)
-        {
-            this.build = build;
-            WarningsWithCounts = new List<WarningWithCountViewModel>();
-            WarningsWithMovements = new WarningsMovementsViewModel(warningsWithMovements);
-            foreach (KeyValuePair<string, int> pair in warningsWithCounts)
-            {
-                WarningsWithCounts.Add(
-                    new WarningWithCountViewModel(pair.Key, pair.Value));
-            }
-        }
+        public int WarningsTotalCountPrevious { get; set; }
 
-        public long BuildNumber
-        {
-            get
-            {
-                return build.BuildNumber;
-            }
-        }
+        public ReadOnlyDictionary<string, int> WarningMovements { get; set; }
 
-        public int WarningsTotalCount
-        {
-            get
-            {
-                return WarningsWithCounts.Sum(wc => wc.WarningsCountInBuild);
-            }
-        }
-
-        public List<WarningWithCountViewModel> WarningsWithCounts { get; }
-
-        public WarningsMovementsViewModel WarningsWithMovements { get; }
+        public ReadOnlyDictionary<string, BuildWarningBlameViewModel> Blames { get; set; }
     }
 }

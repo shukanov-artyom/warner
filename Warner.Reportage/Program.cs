@@ -22,7 +22,7 @@ namespace Warner.Reportage
                 .UseConfiguration(configuration)
                 .UseIISIntegration()
                 .UseStartup<Startup>()
-                .UseApplicationInsights()
+                //.UseApplicationInsights()
                 .Build();
 
             host.Run();

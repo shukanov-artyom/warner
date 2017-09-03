@@ -35,6 +35,11 @@ namespace Warner.Api.Gateway
             return QueryParse<List<Build>>($@"api/Build/All/{projectName}");
         }
 
+        public IEnumerable<Build> GetAllBuildsForProject(long projectId)
+        {
+            return QueryParse<List<Build>>($@"api/Build/All/{projectId}");
+        }
+
         public IEnumerable<BuildWarning> GetAllWarningsForBuild(long buildId)
         {
             return QueryParse<List<BuildWarning>>($@"api/Warning/All/{buildId}");

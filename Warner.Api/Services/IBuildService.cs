@@ -8,14 +8,12 @@ namespace Warner.Api.Services
     {
         Build GetById(long id);
 
-        Build GetByIdentifierString(
-            long projectId,
-            long buildNumber);
-
         Build GetPreviousFor(long buildId);
 
         Build SaveNew(Build build);
 
         List<Build> GetAllForProject(string projectName);
+
+        List<Build> GetAllForProject(long projectId);
     }
 }

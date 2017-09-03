@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using Warner.Domain;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Warner.Api.Commands.WarningReport;
 using Warner.Api.Cqrs.Infrastructure;
-using Warner.Api.Queries.BuildWarningsMovement;
 using Warner.Api.Queries.BuildWarningSummary;
 using Warner.Api.Queries.GetAllWarningsForBuild;
-using Warner.Api.Queries.GetPreviousBuild;
+using Warner.Domain;
 
 namespace Warner.Api.Controllers
 {
@@ -53,26 +51,6 @@ namespace Warner.Api.Controllers
             var query = new BuildWarningSummaryQuery(buildId);
             var result = await Run(query) as BuildWarningSummaryQueryResult;
             return result.Dictionary;
-        }
-
-        [Route("Movement/{buildId}")]
-        [HttpGet]
-        public async Task<IDictionary<string, int>> Movement(long buildId)
-        {
-            var query = new GetPreviousBuildQuery(buildId);
-            var result = await Run(query);
-            GetPreviousBuildQueryResult typedResult =
-                result as GetPreviousBuildQueryResult;
-            long previousBuildId = typedResult.PreviousBuild.Id;
-            var currentSummaryQuery = new BuildWarningSummaryQuery(buildId);
-            var current = await Run(currentSummaryQuery) as BuildWarningSummaryQueryResult;
-            var previousSummaryQuery = new BuildWarningSummaryQuery(previousBuildId);
-            var previous = await Run(previousSummaryQuery) as BuildWarningSummaryQueryResult;
-            var movementQuery = new BuildWarningsMovementQuery(
-                current.Dictionary,
-                previous.Dictionary);
-            var movement = await Run(movementQuery) as BuildWarningsMovementQueryResult;
-            return movement.Movement;
         }
 
         [HttpGet]

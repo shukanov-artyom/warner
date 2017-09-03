@@ -9,7 +9,5 @@ namespace Warner.Reportage.DomainServices
         List<BuildWarning> AllForBuild(long buildId);
 
         IDictionary<string, int> GetSummaryForBuild(long buildId);
-
-        IDictionary<string, int> GetMovementsForBuild(long buildId);
     }
 }

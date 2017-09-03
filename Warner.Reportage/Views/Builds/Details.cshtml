@@ -5,42 +5,75 @@
     ViewBag.Title = "Build warnings";
 }
 
-<h2>Build #@Model.BuildNumber has @Model.WarningsTotalCount warnings</h2>
+<h2>Build has @Model.WarningsTotalCountCurrent warnings</h2>
+<h2>Build had @Model.WarningsTotalCountPrevious warnings before</h2>
 
-<div class="col-md-6">
+<div class="col-md-4">
     <h3>Warnings by count:</h3>
-    <ul>
-        @foreach (var v in Model.WarningsWithCounts
-            .OrderByDescending(p => p.WarningsCountInBuild))
+    <ul styl>
+        @foreach (var v in Model.WarningMovements
+            .OrderByDescending(p => Math.Abs(p.Value)))
         {
             <li>
                 <span>
-                    <a href="@v.WarningDetailsLink">@v.WarningType</a>
+                    @{ string link = new WarningLinkProvider(v.Key).GetLink(); }
+                    <a href="@link">@v.Key</a>
                 </span>
                 <span>
-                    @v.WarningsCountInBuild
+                    @v.Value
                 </span>
             </li>
         }
     </ul>
 </div>
-<div class="col-md-6">
+<div class="col-md-8">
     <h3>Warnings movement:</h3>
     <ul>
-        @foreach (var v in Model.WarningsWithCounts
-            .OrderByDescending(p => p.WarningsCountInBuild))
+        @foreach (var pair in Model.Blames.OrderByDescending(b => Math.Abs(b.Value.Movement)))
         {
             <li>
-                <span>
-                    <a href="@v.WarningDetailsLink">@v.WarningType</a>
-                </span>
-                <span>
-                    @v.WarningsCountInBuild
-                </span>
+                <div>
+                    <span>
+                        @{ string link = new WarningLinkProvider(pair.Key).GetLink(); }
+                        <span><a href="@link">@pair.Key</a></span>
+                        <span>:</span>
+                        @if (pair.Value.Movement > 0)
+                        {
+                            <span style="color: red;">@String.Format($"+{pair.Value.Movement}")</span>
+                        }
+                        else if (pair.Value.Movement == 0)
+                        {
+                            <span>-</span>
+                        }
+                        else
+                        {
+                            <span style="color: green;">-@pair.Value.Movement;</span>
+                        }
+                    </span>
+                    <span>
+                        now have @Model.Blames.Count(b => b.Key == pair.Key)
+                    </span>
+                </div>
+                <div> <!-- Here comes a blame -->
+                    @foreach (var v in Model.Blames[pair.Key].Appeared)
+                    {
+                        <div>
+                            <p style="color: red;">
+                                + @v.Developer in @v.CodeFile:@v.LineNumber
+                            </p>
+                        </div>
+                    }
+                    @foreach (var v in Model.Blames[pair.Key].Disappeared)
+                    {
+                        <div>
+                            <p style="color: green;">
+                                - @v.Developer in @v.CodeFile:@v.LineNumber
+                            </p>
+                        </div>
+                    }
+                </div>
             </li>
-        }
+         }
     </ul>
 </div>
-
-
 

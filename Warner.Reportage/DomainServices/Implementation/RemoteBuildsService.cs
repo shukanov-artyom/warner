@@ -24,5 +24,10 @@ namespace Warner.Reportage.DomainServices.Implementation
         {
             return webApi.GetAllBuildsForProject(projectName).ToList();
         }
+
+        public List<Build> GetAllForProject(long projectId)
+        {
+            return webApi.GetAllBuildsForProject(projectId).ToList();
+        }
     }
 }

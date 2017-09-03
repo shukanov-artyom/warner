@@ -9,5 +9,7 @@ namespace Warner.Reportage.DomainServices
         Build Get(long buildId);
 
         List<Build> GetAllForProject(string projectName);
+
+        List<Build> GetAllForProject(long projectId);
     }
 }

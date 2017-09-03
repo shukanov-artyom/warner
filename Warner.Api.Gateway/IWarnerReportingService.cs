@@ -15,6 +15,8 @@ namespace Warner.Api.Gateway
 
         IEnumerable<Build> GetAllBuildsForProject(string projectName);
 
+        IEnumerable<Build> GetAllBuildsForProject(long projectId);
+
         IEnumerable<BuildWarning> GetAllWarningsForBuild(long buildId);
 
         IDictionary<string, int> GetSummaryForBuild(long buildId);

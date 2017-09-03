@@ -7,6 +7,7 @@ using Warner.Api.Cqrs.Infrastructure;
 using Warner.Api.Queries.GetAllBuildsForProject;
 using Warner.Api.Queries.GetBuld;
 using Warner.Domain;
+using Warner.Domain.Surrogate;
 
 namespace Warner.Api.Controllers
 {
@@ -51,11 +52,28 @@ namespace Warner.Api.Controllers
         [Route("api/Build/All/{projectName}")]
         public async Task<List<Build>> All(string projectName)
         {
-            GetAllBuildsForProjectQuery query =
-                new GetAllBuildsForProjectQuery(projectName);
+            GetAllBuildsForProjectQuery query;
+            int projectId;
+            if (Int32.TryParse(projectName, out projectId))
+            {
+                query = new GetAllBuildsForProjectQuery(projectId);
+            }
+            else
+            {
+                query = new GetAllBuildsForProjectQuery(projectName);
+            }
             GetAllBuildsForProjectQueryResult result =
                 await Run(query) as GetAllBuildsForProjectQueryResult;
             return result.Builds;
         }
+
+//        [HttpGet]
+//        [Route("api/Duild/Blame/{buildId}")]
+//        public async Task<BuildBlameInfo> Blame(long buildId)
+//        {
+//            var query = new GetBlameQuery(buildId);
+//            GetBlameQueryResult result = Run(query) as GetBlameQueryResult;
+//            return result.Blame;
+//        }
     }
 }

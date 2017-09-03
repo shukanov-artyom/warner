@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warner.Api", "Warner.Api\Wa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warner.Api.Test", "Warner.Api.Test\Warner.Api.Test.csproj", "{87A6AD01-8FB5-4707-9B0B-5DAA7B3D8BD9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warner.Firefighter", "Warner.Firefighter\Warner.Firefighter.csproj", "{3C712E6B-60FA-460D-A4AF-E6D39761C21E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warner.Analyzer.LogWrapper", "Warner.Analyzer.LogWrapper\Warner.Analyzer.LogWrapper.csproj", "{4114A6D1-82C1-48C6-997B-39174588034D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warner.Reportage", "Warner.Reportage\Warner.Reportage.csproj", "{DBF57598-4B88-466A-8D77-585AFA3739F9}"
@@ -25,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warner.Api.Gateway", "Warne
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warner.Api.Configuration", "Warner.Api.Configuration\Warner.Api.Configuration.csproj", "{A67516BA-BDF7-4ED6-B1E2-1BFFC3FEB8FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warner.Reportage.Test", "Warner.Reportage.Test\Warner.Reportage.Test.csproj", "{610520DE-0BF3-4681-9865-6268ACCC2596}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warner.Reportage.Test", "Warner.Reportage.Test\Warner.Reportage.Test.csproj", "{3C301A6A-C006-4CB5-8CD0-8ACC83520606}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +51,6 @@ Global
 		{87A6AD01-8FB5-4707-9B0B-5DAA7B3D8BD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87A6AD01-8FB5-4707-9B0B-5DAA7B3D8BD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87A6AD01-8FB5-4707-9B0B-5DAA7B3D8BD9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3C712E6B-60FA-460D-A4AF-E6D39761C21E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3C712E6B-60FA-460D-A4AF-E6D39761C21E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3C712E6B-60FA-460D-A4AF-E6D39761C21E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3C712E6B-60FA-460D-A4AF-E6D39761C21E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4114A6D1-82C1-48C6-997B-39174588034D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4114A6D1-82C1-48C6-997B-39174588034D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4114A6D1-82C1-48C6-997B-39174588034D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -77,10 +71,10 @@ Global
 		{A67516BA-BDF7-4ED6-B1E2-1BFFC3FEB8FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A67516BA-BDF7-4ED6-B1E2-1BFFC3FEB8FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A67516BA-BDF7-4ED6-B1E2-1BFFC3FEB8FC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{610520DE-0BF3-4681-9865-6268ACCC2596}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{610520DE-0BF3-4681-9865-6268ACCC2596}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{610520DE-0BF3-4681-9865-6268ACCC2596}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{610520DE-0BF3-4681-9865-6268ACCC2596}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C301A6A-C006-4CB5-8CD0-8ACC83520606}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C301A6A-C006-4CB5-8CD0-8ACC83520606}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C301A6A-C006-4CB5-8CD0-8ACC83520606}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C301A6A-C006-4CB5-8CD0-8ACC83520606}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

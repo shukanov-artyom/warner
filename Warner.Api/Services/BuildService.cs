@@ -75,5 +75,18 @@ namespace Warner.Api.Services
             }
             return GetAll(projectName.ToUpper()).ToList();
         }
+
+        public List<Build> GetAllForProject(long projectId)
+        {
+            IEnumerable<Build> GetAll(long projectIdLocal)
+            {
+                foreach (BuildEntity entity in
+                    dataContext.Builds.Where(b => b.ProjectId == projectIdLocal))
+                {
+                    yield return mapper.Map<Build>(entity);
+                }
+            }
+            return GetAll(projectId).ToList();
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Warner.Domain;
+using Warner.Domain.Surrogate;
 
 namespace Warner.Api.Services
 {
@@ -13,5 +14,7 @@ namespace Warner.Api.Services
         BuildWarning SaveNew(BuildWarning warning);
 
         IEnumerable<BuildWarning> SaveNew(List<BuildWarning> warnings);
+
+        BuildBlameInfo GetBlame(long buildId);
     }
 }
