@@ -69,10 +69,10 @@ namespace Warner.Analyzer.Report
 
         private void SendCurrentBuffer()
         {
-            int itemsCount = buffer.Count(b => b != null);
+            buffer = buffer.Where(e => e != null).ToArray();
             service.ReportWarningBatch(buffer);
+            speedometer.IncrementBy(buffer.Length);
             buffer = new BuildWarning[BufferedWarningsCount];
-            speedometer.IncrementBy(itemsCount);
             counter = 0;
         }
     }
