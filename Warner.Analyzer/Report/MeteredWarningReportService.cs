@@ -49,12 +49,29 @@ namespace Warner.Analyzer.Report
                 }
                 else
                 {
-                    service.ReportWarningBatch(buffer);
-                    buffer = new BuildWarning[BufferedWarningsCount];
-                    speedometer.IncrementBy(BufferedWarningsCount);
-                    counter = 0;
+                    SendCurrentBuffer();
                 }
             }
+        }
+
+        public void Finish()
+        {
+            // TODO : move this to Dispose()
+            lock (locker)
+            {
+                if (buffer.Length > 0)
+                {
+                    SendCurrentBuffer();
+                }
+            }
+        }
+
+        private void SendCurrentBuffer()
+        {
+            service.ReportWarningBatch(buffer);
+            buffer = new BuildWarning[BufferedWarningsCount];
+            speedometer.IncrementBy(BufferedWarningsCount);
+            counter = 0;
         }
     }
 }

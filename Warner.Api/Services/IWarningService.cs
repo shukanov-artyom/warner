@@ -9,6 +9,8 @@ namespace Warner.Api.Services
     {
         IEnumerable<BuildWarning> GetForBuild(long buildId);
 
+        IEnumerable<BuildWarning> GetOfTypeForBuild(long buildId, string warningType);
+
         IDictionary<string, int> GetSummaryForBuild(long buildId);
 
         BuildWarning SaveNew(BuildWarning warning);

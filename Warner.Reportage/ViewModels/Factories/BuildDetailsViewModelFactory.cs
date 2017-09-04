@@ -34,16 +34,15 @@ namespace Warner.Reportage.ViewModels.Factories
             }
             var currentSummary = warnings.GetSummaryForBuild(build.Id);
             var prevSummary = warnings.GetSummaryForBuild(previousBuild.Id);
-            List<BuildWarning> currentWarnings = warnings.AllForBuild(build.Id);
-            List<BuildWarning> prevWarnings = warnings.AllForBuild(previousBuild.Id);
-            ReadOnlyDictionary<string,int> movements =
+            ReadOnlyDictionary<string, int> movements =
                 new MovementFactory(currentSummary, prevSummary).Create();
             return new BuildDetailsViewModel()
             {
-                WarningsTotalCountCurrent = currentWarnings.Count,
-                WarningsTotalCountPrevious = prevWarnings.Count,
+                BuildId = buildId,
+                WarningsTotalCountCurrent = currentSummary.Sum(w => w.Value),
+                WarningsTotalCountPrevious = prevSummary.Sum(w => w.Value),
+                Summary = new ReadOnlyDictionary<string, int>(currentSummary),
                 WarningMovements = movements,
-                Blames = new BuildWarningBlameFactory(movements, currentWarnings, prevWarnings).Create()
             };
         }
     }

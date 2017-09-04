@@ -8,6 +8,8 @@ namespace Warner.Reportage.DomainServices
     {
         List<BuildWarning> AllForBuild(long buildId);
 
+        List<BuildWarning> AllForBuildOfType(long buildId, string warningType);
+
         IDictionary<string, int> GetSummaryForBuild(long buildId);
     }
 }

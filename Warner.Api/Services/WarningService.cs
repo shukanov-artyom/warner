@@ -35,6 +35,19 @@ namespace Warner.Api.Services
             }
         }
 
+        public IEnumerable<BuildWarning> GetOfTypeForBuild(
+            long buildId,
+            string warningType)
+        {
+            IEnumerable<BuildWarningEntity> entities =
+                databaseContext.Warnings.Where(w => w.Build.Id == buildId
+                    && w.WarningType == warningType);
+            foreach (BuildWarningEntity entity in entities)
+            {
+                yield return mapper.Map<BuildWarning>(entity);
+            }
+        }
+
         public IDictionary<string, int> GetSummaryForBuild(long buildId)
         {
 //            IDictionary<string, int> result = new Dictionary<string, int>();

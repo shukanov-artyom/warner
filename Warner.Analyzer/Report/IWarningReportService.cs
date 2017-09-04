@@ -12,5 +12,7 @@ namespace Warner.Analyzer.Report
         Build AddBuild(Build newBuild);
 
         void ReportWarning(BuildWarning warning);
+
+        void Finish();
     }
 }

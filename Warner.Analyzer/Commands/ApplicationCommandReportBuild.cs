@@ -20,9 +20,6 @@ namespace Warner.Analyzer.Commands
         private readonly BlockingCollection<Task<List<BuildWarning>>> warningsQueue =
             new BlockingCollection<Task<List<BuildWarning>>>(30);
 
-        private Project project;
-        private Build build;
-
         // wait untill all processing threads will finish
         private ManualResetEvent[] events;
 
@@ -43,7 +40,7 @@ namespace Warner.Analyzer.Commands
             CommandLineOptionsReportBuild commandLineOptions =
                 appConfiguration.CommandLineOptions as CommandLineOptionsReportBuild;
             // check for project
-            project =
+            Project project =
                 reportService.GetProject(commandLineOptions.ProjectName) ??
                 reportService.SaveProject(new Project()
                 {
@@ -56,7 +53,7 @@ namespace Warner.Analyzer.Commands
                 BuildNumber = commandLineOptions.BuildNumber,
                 LogFileName = commandLineOptions.LogFilePathName
             };
-            build = reportService.AddBuild(newBuild);
+            Build build = reportService.AddBuild(newBuild);
 
             int num = appConfiguration.ApiConfiguration.BlameDataRetrievalThreadsCount;
             events = new ManualResetEvent[num];
@@ -89,6 +86,7 @@ namespace Warner.Analyzer.Commands
                 return new CommandResult(false, e.Message);
             }
             ManualResetEvent.WaitAll(events);
+            reportService.Finish();
             return CommandResult.Ok;
         }
 
@@ -127,7 +125,7 @@ namespace Warner.Analyzer.Commands
             try
             {
                 foreach (Task<List<BuildWarning>> task in
-                warningsQueue.GetConsumingEnumerable())
+                    warningsQueue.GetConsumingEnumerable())
                 {
                     try
                     {

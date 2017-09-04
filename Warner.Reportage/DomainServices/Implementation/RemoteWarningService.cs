@@ -20,6 +20,11 @@ namespace Warner.Reportage.DomainServices.Implementation
             return webApi.GetAllWarningsForBuild(buildId).ToList();
         }
 
+        public List<BuildWarning> AllForBuildOfType(long buildId, string warningType)
+        {
+            return webApi.GetAllOfTypeForBuild(buildId, warningType);
+        }
+
         public IDictionary<string, int> GetSummaryForBuild(long buildId)
         {
             return webApi.GetSummaryForBuild(buildId);

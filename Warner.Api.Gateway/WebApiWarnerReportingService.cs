@@ -56,5 +56,11 @@ namespace Warner.Api.Gateway
             return QueryParse<Dictionary<string, int>>(
                 $@"api/Warning/Movement/{buildId}");
         }
+
+        public List<BuildWarning> GetAllOfTypeForBuild(long buildId, string warningType)
+        {
+            return QueryParse<List<BuildWarning>>(
+                $@"api/Warning/OfTypeForBuild/{buildId}/{warningType}");
+        }
     }
 }

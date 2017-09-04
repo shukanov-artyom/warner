@@ -22,5 +22,7 @@ namespace Warner.Api.Gateway
         IDictionary<string, int> GetSummaryForBuild(long buildId);
 
         IDictionary<string, int> GetMovementsForBuild(long buildId);
+
+        List<BuildWarning> GetAllOfTypeForBuild(long buildId, string warningType);
     }
 }

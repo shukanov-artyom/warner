@@ -24,5 +24,13 @@ namespace Warner.Reportage.Controllers
             var viewModel = new BuildStatsViewModel(warnings.ToList());
             return View(viewModel);
         }
+
+        public IActionResult DetailsForType(string warningType, long buildId)
+        {
+            IEnumerable<BuildWarning> warnings =
+                warningService.AllForBuildOfType(buildId, warningType);
+            var viewModel = new WarningOfTypeForBuildDetailsViewModel(warnings);
+            return View(viewModel);
+        }
     }
 }

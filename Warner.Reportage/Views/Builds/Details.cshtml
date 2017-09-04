@@ -10,17 +10,17 @@
 
 <div class="col-md-4">
     <h3>Warnings by count:</h3>
-    <ul styl>
-        @foreach (var v in Model.WarningMovements
-            .OrderByDescending(p => Math.Abs(p.Value)))
+    <ul>
+        @foreach (var v in Model.Summary.ToList().OrderByDescending(p => p.Value))
         {
+            string warningType = v.Key;
             <li>
                 <span>
-                    @{ string link = new WarningLinkProvider(v.Key).GetLink(); }
-                    <a href="@link">@v.Key</a>
+                    @{ string link = new WarningLinkProvider(warningType).GetLink(); }
+                    <a href="@link">@warningType</a>
                 </span>
                 <span>
-                    @v.Value
+                    @Model.Summary[warningType]
                 </span>
             </li>
         }
@@ -29,51 +29,34 @@
 <div class="col-md-8">
     <h3>Warnings movement:</h3>
     <ul>
-        @foreach (var pair in Model.Blames.OrderByDescending(b => Math.Abs(b.Value.Movement)))
+        @foreach (var pair in Model.WarningMovements.OrderByDescending(b => Math.Abs(b.Value)))
         {
+            string warningType = pair.Key;
+            int warningMovement = pair.Value;
+            int warningsCount = Model.Summary[warningType];
             <li>
                 <div>
                     <span>
-                        @{ string link = new WarningLinkProvider(pair.Key).GetLink(); }
-                        <span><a href="@link">@pair.Key</a></span>
+                        @{ string link = new WarningLinkProvider(warningType).GetLink(); }
+                        <span><a href="@link">@warningType</a></span>
                         <span>:</span>
-                        @if (pair.Value.Movement > 0)
+                        @if (warningMovement > 0)
                         {
-                            <span style="color: red;">@String.Format($"+{pair.Value.Movement}")</span>
+                            <span style="color: red;">@String.Format($"+{warningMovement}")</span>
                         }
-                        else if (pair.Value.Movement == 0)
+                        else if (warningMovement < 0)
                         {
-                            <span>-</span>
-                        }
-                        else
-                        {
-                            <span style="color: green;">-@pair.Value.Movement;</span>
+                            <span style="color: green;">@String.Format($"-{warningMovement}")</span>
                         }
                     </span>
                     <span>
-                        now have @Model.Blames.Count(b => b.Key == pair.Key)
+                        now have @Html.ActionLink(warningsCount.ToString(), "DetailsForType", "Warnings", new { WarningType = warningType, Model.BuildId })
                     </span>
-                </div>
-                <div> <!-- Here comes a blame -->
-                    @foreach (var v in Model.Blames[pair.Key].Appeared)
-                    {
-                        <div>
-                            <p style="color: red;">
-                                + @v.Developer in @v.CodeFile:@v.LineNumber
-                            </p>
-                        </div>
-                    }
-                    @foreach (var v in Model.Blames[pair.Key].Disappeared)
-                    {
-                        <div>
-                            <p style="color: green;">
-                                - @v.Developer in @v.CodeFile:@v.LineNumber
-                            </p>
-                        </div>
-                    }
                 </div>
             </li>
          }
     </ul>
 </div>
+
+
 

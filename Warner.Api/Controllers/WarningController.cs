@@ -53,6 +53,17 @@ namespace Warner.Api.Controllers
             return result.Dictionary;
         }
 
+        [Route("OfTypeForBuild/{buildId}/{warningType}")]
+        [HttpGet]
+        public async Task<IEnumerable<BuildWarning>> OfTypeForBuild(
+            long buildId,
+            string warningType)
+        {
+            var query = new GetAllWarningsForBuildQuery(buildId, warningType);
+            var result = await Run(query) as GetAllWarningsForBuildQueryResult;
+            return result.Warnings;
+        }
+
         [HttpGet]
         public string Get()
         {
