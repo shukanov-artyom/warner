@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Warner.Api.Gateway;
 using Warner.Domain;
 
@@ -68,9 +69,10 @@ namespace Warner.Analyzer.Report
 
         private void SendCurrentBuffer()
         {
+            int itemsCount = buffer.Count(b => b != null);
             service.ReportWarningBatch(buffer);
             buffer = new BuildWarning[BufferedWarningsCount];
-            speedometer.IncrementBy(BufferedWarningsCount);
+            speedometer.IncrementBy(itemsCount);
             counter = 0;
         }
     }

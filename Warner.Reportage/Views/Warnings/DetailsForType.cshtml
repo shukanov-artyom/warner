@@ -17,7 +17,8 @@
             @foreach (BuildWarning info in group)
             {
                 <li>
-                    <span><a href="@new SourceCodeLinkProvider(info.SourceFileName).Provide()">@info.SourceFileName</a>,</span>
+                    @{ var sourceCodeLink = new SourceCodeLinkProvider(info.SourceFileName).Provide(); }
+                    <span><a href="@sourceCodeLink">@info.SourceFileName</a>,</span>
                     <span>line @info.CodeLineNumber</span>
                 </li>
             }
