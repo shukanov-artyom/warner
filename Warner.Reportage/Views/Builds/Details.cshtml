@@ -33,7 +33,7 @@
         {
             string warningType = pair.Key;
             int warningMovement = pair.Value;
-            int warningsCount = Model.Summary[warningType];
+            int warningsCount = Model.Summary.ContainsKey(warningType) ? Model.Summary[warningType] : 0;
             <li>
                 <div>
                     <span>

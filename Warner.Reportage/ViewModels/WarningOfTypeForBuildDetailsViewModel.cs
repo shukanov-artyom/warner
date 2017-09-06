@@ -19,6 +19,10 @@ namespace Warner.Reportage.ViewModels
         {
             get
             {
+                if (Warnings.Count == 0)
+                {
+                    return "n/a";
+                }
                 return Warnings.First().WarningType;
             }
         }
