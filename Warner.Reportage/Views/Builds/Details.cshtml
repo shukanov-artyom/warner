@@ -1,12 +1,21 @@
-@using Warner.Reportage.ViewModels
+﻿@using Warner.Reportage.ViewModels
 @model BuildDetailsViewModel
 
 @{
     ViewBag.Title = "Build warnings";
+    int totalDynamic = Model.WarningsTotalCountCurrent - Model.WarningsTotalCountPrevious;
 }
 
-<h2>Build has @Model.WarningsTotalCountCurrent warnings</h2>
-<h2>Build had @Model.WarningsTotalCountPrevious warnings before</h2>
+<h2>Build has @Model.WarningsTotalCountCurrent warnings (
+    @if (totalDynamic < 0)
+    {
+        <span style="color: green;">↓@Math.Abs(totalDynamic)</span>
+    }
+    else
+    {
+        <span style="color: red;">↑@Math.Abs(totalDynamic)</span>
+    })
+</h2>
 
 <div class="col-md-4">
     <h3>Warnings by count:</h3>
