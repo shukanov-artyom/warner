@@ -10,7 +10,7 @@ namespace Warner.Analyzer.LogWrapper.WarnTypeParsers
             {
                 throw new ArgumentException("line");
             }
-            Line = line.ToLower();
+            Line = line;
         }
 
         protected string Line { get; private set; }

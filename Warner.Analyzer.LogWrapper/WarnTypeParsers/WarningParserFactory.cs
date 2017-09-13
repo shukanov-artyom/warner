@@ -12,7 +12,7 @@ namespace Warner.Analyzer.LogWrapper.WarnTypeParsers
             {
                 throw new ArgumentNullException(nameof(line));
             }
-            this.line = line.ToLower();
+            this.line = line;
         }
 
         public WarningParserBase Create()

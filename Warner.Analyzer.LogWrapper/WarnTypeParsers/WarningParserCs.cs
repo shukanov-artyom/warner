@@ -46,7 +46,7 @@ namespace Warner.Analyzer.LogWrapper.WarnTypeParsers
                 new Regex(PatternType2);
             Match match = regex.Match(Line);
             string date = match.Groups["date"].Value;
-            string warnCode = match.Groups["warncode"].Value;
+            string warnCode = match.Groups["warncode"].Value.ToLower();
             string filename = match.Groups["filename"].Value;
             string lineNumber = match.Groups["linenumber"].Value;
             string csproj = match.Groups["csproj"].Value;

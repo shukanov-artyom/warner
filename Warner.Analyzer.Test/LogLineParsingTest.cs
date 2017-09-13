@@ -17,7 +17,7 @@ namespace Warner.Analyzer.Test
             LogEntryInfo result = parser.Parse(repo);
             Assert.Equal(result.WarningType, "CS0108".ToLower());
             Assert.Equal(result.LoggedDate, DateTime.Parse("13-Mar-2017 15:27:22"));
-            Assert.Equal(result.SourceFilePathName, @"orthobullets.presentation\Models\Evidence\PostDetails.cs".ToLower());
+            Assert.Equal(result.SourceFilePathName, @"Orthobullets.Presentation\Models\Evidence\PostDetails.cs");
             Assert.Equal(result.CodeLineNumber, 41);
         }
 
@@ -30,7 +30,7 @@ namespace Warner.Analyzer.Test
             LogEntryInfo result = parser.Parse(repo);
             Assert.Equal(result.WarningType, "CS0618".ToLower());
             Assert.Equal(result.LoggedDate, DateTime.Parse("13-Mar-2017 15:39:17"));
-            Assert.Equal(result.SourceFilePathName, @"website\App_Code\Repository\CacheRepository\VideoCacheRepository.cs".ToLower());
+            Assert.Equal(result.SourceFilePathName, @"website\App_Code\Repository\CacheRepository\VideoCacheRepository.cs");
             Assert.Equal(result.CodeLineNumber, 31);
         }
 
@@ -43,7 +43,7 @@ namespace Warner.Analyzer.Test
             LogEntryInfo result = parser.Parse(repo);
             Assert.Equal(result.WarningType, "CA2100".ToLower());
             Assert.Equal(result.LoggedDate, DateTime.Parse("15-Mar-2017 10:35:03"));
-            Assert.Equal(result.SourceFilePathName, @"Othobullets.Data\Extensions\MultipleResultSets.cs".ToLower());
+            Assert.Equal(result.SourceFilePathName, @"Othobullets.Data\Extensions\MultipleResultSets.cs");
             Assert.Equal(result.CodeLineNumber, 52);
         }
 
@@ -56,7 +56,7 @@ namespace Warner.Analyzer.Test
             LogEntryInfo result = parser.Parse(repo);
             Assert.Equal(result.WarningType, "SA1515".ToLower());
             Assert.Equal(result.LoggedDate, DateTime.Parse("15-Mar-2017 10:35:03"));
-            Assert.Equal(result.SourceFilePathName, @"Othobullets.Data\Constants.cs".ToLower());
+            Assert.Equal(result.SourceFilePathName, @"Othobullets.Data\Constants.cs");
             Assert.Equal(result.CodeLineNumber, 8);
         }
 
@@ -69,7 +69,7 @@ namespace Warner.Analyzer.Test
             LogEntryInfo result = parser.Parse(repo);
             Assert.Equal(result.WarningType, "SA1609".ToLower());
             Assert.Equal(result.LoggedDate, DateTime.Parse("01-Apr-2017 00:03:01"));
-            Assert.Equal(result.SourceFilePathName, @"Orthobullets.Common\Caching\Caches.cs".ToLower());
+            Assert.Equal(result.SourceFilePathName, @"Orthobullets.Common\Caching\Caches.cs");
             Assert.Equal(result.CodeLineNumber, 11);
         }
 
@@ -101,7 +101,6 @@ namespace Warner.Analyzer.Test
             @"Othobullets.Data\Common\TakenItems`1.cs")]
         public void ParseCsType1(string data, string prime)
         {
-            prime = prime.ToLower();
             var parser = new LogEntryParser(data);
             Assert.Equal(parser.IsWarningEntry(), true);
             LogEntryInfo result = parser.Parse(repo);

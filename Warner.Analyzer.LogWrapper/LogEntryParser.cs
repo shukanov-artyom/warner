@@ -10,7 +10,7 @@ namespace Warner.Analyzer.LogWrapper
 
         public LogEntryParser(string line)
         {
-            this.line = line.ToLower();
+            this.line = line;
         }
 
         public bool IsWarningEntry()
@@ -43,7 +43,7 @@ namespace Warner.Analyzer.LogWrapper
 
         private bool LooksLikeWarningEntry(string line)
         {
-            return CodeWarningFootprints.All.Any(fp => line.Contains(fp));
+            return CodeWarningFootprints.All.Any(fp => line.ToLower().Contains(fp));
         }
 
         private bool Ignored(string line)

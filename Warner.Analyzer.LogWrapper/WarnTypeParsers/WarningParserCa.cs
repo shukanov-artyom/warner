@@ -37,7 +37,7 @@ namespace Warner.Analyzer.LogWrapper.WarnTypeParsers
                     $"Cannot parse following line: \r\n{Line}");
             }
             string date = match.Groups["date"].Value;
-            string warnCode = match.Groups["warncode"].Value;
+            string warnCode = match.Groups["warncode"].Value.ToLower();
             string filename = match.Groups["filename"].Value;
             string lineNumber = match.Groups["linenumber"].Value;
 

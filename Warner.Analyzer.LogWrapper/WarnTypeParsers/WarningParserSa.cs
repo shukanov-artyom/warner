@@ -20,7 +20,7 @@ namespace Warner.Analyzer.LogWrapper.WarnTypeParsers
             Regex regex = new Regex(pattern);
             Match match = regex.Match(Line);
             string date = match.Groups["date"].Value;
-            string warnCode = match.Groups["warncode"].Value;
+            string warnCode = match.Groups["warncode"].Value.ToLower();
             string filename = match.Groups["filename"].Value;
             string lineNumber = match.Groups["linenumber"].Value;
             var relative = new RelativePath(repo);
