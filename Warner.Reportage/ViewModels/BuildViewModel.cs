@@ -1,5 +1,6 @@
 ﻿using System;
 using Warner.Domain;
+using Warner.Reportage.ViewModels.Factories;
 
 namespace Warner.Reportage.ViewModels
 {
@@ -30,5 +31,16 @@ namespace Warner.Reportage.ViewModels
         }
 
         public Build Model => model;
+
+        public string TimeAmountSinceBuilt
+        {
+            get
+            {
+                var amount = new NiceTimeAmount(
+                    Model.BuildDate,
+                    DateTimeOffset.Now);
+                return amount.GetDisplayValue();
+            }
+        }
     }
 }
