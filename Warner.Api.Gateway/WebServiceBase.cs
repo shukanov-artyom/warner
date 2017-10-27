@@ -3,23 +3,21 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using Newtonsoft.Json;
-using Warner.Api.Configuration;
 
 namespace Warner.Api.Gateway
 {
-    public abstract class WarnerServiceBase
+    public abstract class WebServiceBase
     {
-        protected WarnerServiceBase(WarnerApiConfiguration config)
-        {
-            Config = config
-                ?? throw new ArgumentNullException(nameof(config));
-        }
+        private readonly string serviceUrl;
 
-        private WarnerApiConfiguration Config { get; }
+        protected WebServiceBase(string serviceUrl)
+        {
+            this.serviceUrl = serviceUrl;
+        }
 
         private HttpClient GetClient()
         {
-            return new HttpClientFactory(Config).GetClient();
+            return new HttpClientFactory(serviceUrl).GetClient();
         }
 
         protected TResult QueryParse<TResult>(string apiAddress)

@@ -8,10 +8,10 @@ namespace Warner.Api.Gateway
     /// <summary>
     /// Service for submitting data.
     /// </summary>
-    public class WebApiWarnerService : WarnerServiceBase, IWarnerService
+    public class WebApiWarnerService : WebServiceBase, IWarnerService
     {
         public WebApiWarnerService(WarnerApiConfiguration config)
-            : base(config)
+            : base(config.ServiceUrl)
         {
         }
 

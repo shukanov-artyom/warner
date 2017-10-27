@@ -1,24 +1,23 @@
 ﻿using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using Warner.Api.Configuration;
 
 namespace Warner.Api.Gateway
 {
     internal class HttpClientFactory
     {
-        private readonly WarnerApiConfiguration config;
+        private readonly string serviceUrl;
 
-        public HttpClientFactory(WarnerApiConfiguration config)
+        public HttpClientFactory(string serviceUrl)
         {
-            this.config = config ?? throw new ArgumentNullException(nameof(config));
+            this.serviceUrl = serviceUrl;
         }
 
         public HttpClient GetClient()
         {
             var result = new HttpClient
             {
-                BaseAddress = new Uri(config.ServiceUrl)
+                BaseAddress = new Uri(serviceUrl)
             };
             result.DefaultRequestHeaders.Accept.Clear();
             result.DefaultRequestHeaders.Accept.Add(

@@ -9,12 +9,12 @@ namespace Warner.Api.Gateway
     /// Note that this service is readonly.
     /// </summary>
     public class WebApiWarnerReportingService :
-        WarnerServiceBase, IWarnerReportingService
+        WebServiceBase, IWarnerReportingService
     {
         private readonly WarnerApiConfiguration config;
 
         public WebApiWarnerReportingService(WarnerApiConfiguration config)
-            : base(config)
+            : base(config.ServiceUrl)
         {
             this.config = config
                 ?? throw new ArgumentNullException(nameof(config));
