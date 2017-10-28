@@ -4,11 +4,13 @@ using Autofac.Extensions.DependencyInjection;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Warner.Api.DependencyInjection;
 using Warner.Api.Mappers;
+using Warner.Persistency;
 using Warner.Persistency.Options;
 
 namespace Warner.Api
@@ -39,7 +41,10 @@ namespace Warner.Api
             // Add framework services.
             services.AddMvc();
             services.AddAutoMapper(typeof(ProfileConfiguration)); // provide assembly marker type
-            services.Configure<DatabaseOptions>(Configuration.GetSection("ConnectionStrings"));
+            string connectionString =
+                Configuration.GetSection("ConnectionStrings")["WarnerDatabase"];
+            services.AddDbContext<ApplicationDataContext>(
+                options => options.UseSqlServer(connectionString));
 
             var builder = new ContainerBuilder();
             builder.RegisterModule<CqrsModule>();
