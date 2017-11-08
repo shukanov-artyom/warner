@@ -7,7 +7,6 @@ using Warner.Api.Cqrs.Infrastructure;
 using Warner.Api.Queries.GetAllBuildsForProject;
 using Warner.Api.Queries.GetBuld;
 using Warner.Domain;
-using Warner.Domain.Surrogate;
 
 namespace Warner.Api.Controllers
 {

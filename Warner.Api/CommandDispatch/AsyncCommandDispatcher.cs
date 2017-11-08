@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Autofac;
 using Warner.Api.Cqrs.Infrastructure;
 
-namespace Warner.Api.CommandHandlers
+namespace Warner.Api.CommandDispatch
 {
     public class AsyncCommandDispatcher : ICommandDispatcher, IDisposable
     {

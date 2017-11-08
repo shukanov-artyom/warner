@@ -1,6 +1,6 @@
 ﻿using Autofac;
 using System.Reflection;
-using Warner.Api.CommandHandlers;
+using Warner.Api.CommandDispatch;
 using Warner.Api.Commands;
 using Warner.Api.Commands.AddBuild;
 using Warner.Api.Commands.AddProject;

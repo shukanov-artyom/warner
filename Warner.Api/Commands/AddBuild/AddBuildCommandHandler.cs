@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Warner.Api.Commands;
-using Warner.Api.Commands.AddBuild;
 using Warner.Api.Cqrs.Infrastructure;
 using Warner.Api.Services;
 
-namespace Warner.Api.CommandHandlers
+namespace Warner.Api.Commands.AddBuild
 {
     public class AddBuildCommandHandler :
         IAsyncCommandHandler<ICommand<AddBuildCommandContext, AddBuildCommandResult>>
