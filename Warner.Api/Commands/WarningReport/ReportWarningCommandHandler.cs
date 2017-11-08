@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AutoMapper;
-using Warner.Api.Commands;
-using Warner.Api.Commands.WarningReport;
 using Warner.Api.Cqrs.Infrastructure;
 using Warner.Api.Services;
 
-namespace Warner.Api.CommandHandlers
+namespace Warner.Api.Commands.WarningReport
 {
     public class ReportWarningCommandHandler :
         IAsyncCommandHandler<ICommand<WarningReportCommandContext, WarningReportCommandResult>>

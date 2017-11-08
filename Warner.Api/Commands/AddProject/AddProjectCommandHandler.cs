@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Warner.Api.Commands;
-using Warner.Api.Commands.AddProject;
 using Warner.Api.Cqrs.Infrastructure;
 using Warner.Api.Services;
 
-namespace Warner.Api.CommandHandlers
+namespace Warner.Api.Commands.AddProject
 {
     public class AddProjectCommandHandler :
         IAsyncCommandHandler<ICommand<AddProjectCommandContext, AddProjectCommandResult>>
